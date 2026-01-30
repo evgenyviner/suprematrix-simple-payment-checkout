@@ -2,24 +2,24 @@
 /**
  * Admin Settings Page for Stripe Embedded Checkout
  *
- * @package SECWP
+ * @package SPC
  */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class SECWP_Settings_Page {
+class SPC_Settings_Page {
 
     /**
      * Option group name
      */
-    const OPTION_GROUP = 'secwp_settings';
+    const OPTION_GROUP = 'spc_settings';
 
     /**
      * Option name
      */
-    const OPTION_NAME = 'secwp_settings';
+    const OPTION_NAME = 'spc_settings';
 
     /**
      * Initialize the settings page
@@ -34,10 +34,10 @@ class SECWP_Settings_Page {
      */
     public function add_settings_page() {
         add_options_page(
-            __('Stripe Embedded Checkout', 'secwp'),
-            __('Stripe Embedded Checkout', 'secwp'),
+            __('Stripe Embedded Checkout', 'spc'),
+            __('Stripe Embedded Checkout', 'spc'),
             'manage_options',
-            'secwp-settings',
+            'spc-settings',
             array($this, 'render_settings_page')
         );
     }
@@ -65,82 +65,82 @@ class SECWP_Settings_Page {
 
         // Mode Settings Section
         add_settings_section(
-            'secwp_mode_section',
-            __('Mode Settings', 'secwp'),
+            'spc_mode_section',
+            __('Mode Settings', 'spc'),
             array($this, 'render_mode_section_description'),
-            'secwp-settings'
+            'spc-settings'
         );
 
         add_settings_field(
             'test_mode',
-            __('Test Mode', 'secwp'),
+            __('Test Mode', 'spc'),
             array($this, 'render_test_mode_field'),
-            'secwp-settings',
-            'secwp_mode_section'
+            'spc-settings',
+            'spc_mode_section'
         );
 
         // API Keys Section
         add_settings_section(
-            'secwp_keys_section',
-            __('API Keys', 'secwp'),
+            'spc_keys_section',
+            __('API Keys', 'spc'),
             array($this, 'render_keys_section_description'),
-            'secwp-settings'
+            'spc-settings'
         );
 
         add_settings_field(
             'test_secret_key',
-            __('Test Secret Key', 'secwp'),
+            __('Test Secret Key', 'spc'),
             array($this, 'render_test_secret_key_field'),
-            'secwp-settings',
-            'secwp_keys_section'
+            'spc-settings',
+            'spc_keys_section'
         );
 
         add_settings_field(
             'test_publishable_key',
-            __('Test Publishable Key', 'secwp'),
+            __('Test Publishable Key', 'spc'),
             array($this, 'render_test_publishable_key_field'),
-            'secwp-settings',
-            'secwp_keys_section'
+            'spc-settings',
+            'spc_keys_section'
         );
 
         add_settings_field(
             'live_secret_key',
-            __('Live Secret Key', 'secwp'),
+            __('Live Secret Key', 'spc'),
             array($this, 'render_live_secret_key_field'),
-            'secwp-settings',
-            'secwp_keys_section'
+            'spc-settings',
+            'spc_keys_section'
         );
 
         add_settings_field(
             'live_publishable_key',
-            __('Live Publishable Key', 'secwp'),
+            __('Live Publishable Key', 'spc'),
             array($this, 'render_live_publishable_key_field'),
-            'secwp-settings',
-            'secwp_keys_section'
+            'spc-settings',
+            'spc_keys_section'
         );
 
         // Checkout Configuration Section
         add_settings_section(
-            'secwp_checkout_section',
-            __('Checkout Configuration', 'secwp'),
+            'spc_checkout_section',
+            __('Checkout Configuration', 'spc'),
             array($this, 'render_checkout_section_description'),
-            'secwp-settings'
+            'spc-settings'
         );
 
         add_settings_field(
             'return_url',
-            __('Return URL', 'secwp'),
+            __('Return URL', 'spc'),
             array($this, 'render_return_url_field'),
-            'secwp-settings',
-            'secwp_checkout_section'
+            'spc-settings',
+            'spc_checkout_section'
         );
 
         add_settings_field(
             'price_id',
-            __('Product Price ID', 'secwp'),
+            __('Product Price ID', 'spc'),
             array($this, 'render_price_id_field'),
-            'secwp-settings',
-            'secwp_checkout_section'
+            'spc-settings',
+            'spc_checkout_section'
         );
     }
 
@@ -157,35 +157,35 @@ class SECWP_Settings_Page {
         // Test Secret Key
         $test_secret = isset($input['test_secret_key']) ? trim($input['test_secret_key']) : '';
         if (!empty($test_secret) && !$this->validate_secret_key($test_secret, 'test')) {
-            $errors[] = __('Test Secret Key must start with "sk_test_"', 'secwp');
+            $errors[] = __('Test Secret Key must start with "sk_test_"', 'spc');
         }
         $sanitized['test_secret_key'] = $test_secret;
 
         // Test Publishable Key
         $test_publishable = isset($input['test_publishable_key']) ? trim($input['test_publishable_key']) : '';
         if (!empty($test_publishable) && !$this->validate_publishable_key($test_publishable, 'test')) {
-            $errors[] = __('Test Publishable Key must start with "pk_test_"', 'secwp');
+            $errors[] = __('Test Publishable Key must start with "pk_test_"', 'spc');
         }
         $sanitized['test_publishable_key'] = $test_publishable;
 
         // Live Secret Key
         $live_secret = isset($input['live_secret_key']) ? trim($input['live_secret_key']) : '';
         if (!empty($live_secret) && !$this->validate_secret_key($live_secret, 'live')) {
-            $errors[] = __('Live Secret Key must start with "sk_live_"', 'secwp');
+            $errors[] = __('Live Secret Key must start with "sk_live_"', 'spc');
         }
         $sanitized['live_secret_key'] = $live_secret;
 
         // Live Publishable Key
         $live_publishable = isset($input['live_publishable_key']) ? trim($input['live_publishable_key']) : '';
         if (!empty($live_publishable) && !$this->validate_publishable_key($live_publishable, 'live')) {
-            $errors[] = __('Live Publishable Key must start with "pk_live_"', 'secwp');
+            $errors[] = __('Live Publishable Key must start with "pk_live_"', 'spc');
         }
         $sanitized['live_publishable_key'] = $live_publishable;
 
         // Return URL
         $return_url = isset($input['return_url']) ? trim($input['return_url']) : '';
         if (!empty($return_url) && !filter_var($return_url, FILTER_VALIDATE_URL)) {
-            $errors[] = __('Return URL must be a valid URL', 'secwp');
+            $errors[] = __('Return URL must be a valid URL', 'spc');
         }
         $sanitized['return_url'] = esc_url_raw($return_url);
 
@@ -205,7 +205,7 @@ class SECWP_Settings_Page {
                 add_settings_error(
                     self::OPTION_NAME,
                     'missing_test_keys',
-                    __('Test mode is enabled but test keys are missing.', 'secwp'),
+                    __('Test mode is enabled but test keys are missing.', 'spc'),
                     'warning'
                 );
             }
@@ -214,7 +214,7 @@ class SECWP_Settings_Page {
                 add_settings_error(
                     self::OPTION_NAME,
                     'missing_live_keys',
-                    __('Live mode is enabled but live keys are missing.', 'secwp'),
+                    __('Live mode is enabled but live keys are missing.', 'spc'),
                     'warning'
                 );
             }
@@ -261,19 +261,19 @@ class SECWP_Settings_Page {
 
             <?php if ($is_test_mode) : ?>
                 <div class="notice notice-info">
-                    <p><strong><?php esc_html_e('Test Mode is currently active.', 'secwp'); ?></strong></p>
+                    <p><strong><?php esc_html_e('Test Mode is currently active.', 'spc'); ?></strong></p>
                 </div>
             <?php else : ?>
                 <div class="notice notice-warning">
-                    <p><strong><?php esc_html_e('Live Mode is currently active.', 'secwp'); ?></strong></p>
+                    <p><strong><?php esc_html_e('Live Mode is currently active.', 'spc'); ?></strong></p>
                 </div>
             <?php endif; ?>
 
             <form action="options.php" method="post">
                 <?php
                 settings_fields(self::OPTION_GROUP);
-                do_settings_sections('secwp-settings');
-                submit_button(__('Save Settings', 'secwp'));
+                do_settings_sections('spc-settings');
+                submit_button(__('Save Settings', 'spc'));
                 ?>
             </form>
         </div>
@@ -302,7 +302,7 @@ class SECWP_Settings_Page {
      * Render mode section description
      */
     public function render_mode_section_description() {
-        echo '<p>' . esc_html__('Choose whether to use test or live Stripe keys.', 'secwp') . '</p>';
+        echo '<p>' . esc_html__('Choose whether to use test or live Stripe keys.', 'spc') . '</p>';
     }
 
     /**
@@ -314,10 +314,10 @@ class SECWP_Settings_Page {
         ?>
         <label>
             <input type="checkbox" name="<?php echo esc_attr(self::OPTION_NAME); ?>[test_mode]" value="1" <?php checked($test_mode); ?>>
-            <?php esc_html_e('Enable Test Mode', 'secwp'); ?>
+            <?php esc_html_e('Enable Test Mode', 'spc'); ?>
         </label>
         <p class="description">
-            <?php esc_html_e('When enabled, test keys will be used. Uncheck to use live keys.', 'secwp'); ?>
+            <?php esc_html_e('When enabled, test keys will be used. Uncheck to use live keys.', 'spc'); ?>
         </p>
         <?php
     }
@@ -326,7 +326,7 @@ class SECWP_Settings_Page {
      * Render keys section description
      */
     public function render_keys_section_description() {
-        echo '<p>' . esc_html__('Enter your Stripe API keys. You can find these in your Stripe Dashboard under Developers > API keys.', 'secwp') . '</p>';
+        echo '<p>' . esc_html__('Enter your Stripe API keys. You can find these in your Stripe Dashboard under Developers > API keys.', 'spc') . '</p>';
     }
 
     /**
@@ -342,7 +342,7 @@ class SECWP_Settings_Page {
                class="regular-text"
                placeholder="sk_test_...">
         <p class="description">
-            <?php esc_html_e('Your test secret key (starts with sk_test_)', 'secwp'); ?>
+            <?php esc_html_e('Your test secret key (starts with sk_test_)', 'spc'); ?>
         </p>
         <?php
     }
@@ -360,7 +360,7 @@ class SECWP_Settings_Page {
                class="regular-text"
                placeholder="pk_test_...">
         <p class="description">
-            <?php esc_html_e('Your test publishable key (starts with pk_test_)', 'secwp'); ?>
+            <?php esc_html_e('Your test publishable key (starts with pk_test_)', 'spc'); ?>
         </p>
         <?php
     }
@@ -378,7 +378,7 @@ class SECWP_Settings_Page {
                class="regular-text"
                placeholder="sk_live_...">
         <p class="description">
-            <?php esc_html_e('Your live secret key (starts with sk_live_)', 'secwp'); ?>
+            <?php esc_html_e('Your live secret key (starts with sk_live_)', 'spc'); ?>
         </p>
         <?php
     }
@@ -396,7 +396,7 @@ class SECWP_Settings_Page {
                class="regular-text"
                placeholder="pk_live_...">
         <p class="description">
-            <?php esc_html_e('Your live publishable key (starts with pk_live_)', 'secwp'); ?>
+            <?php esc_html_e('Your live publishable key (starts with pk_live_)', 'spc'); ?>
         </p>
         <?php
     }
@@ -405,7 +405,7 @@ class SECWP_Settings_Page {
      * Render checkout section description
      */
     public function render_checkout_section_description() {
-        echo '<p>' . esc_html__('Configure the checkout behavior and product settings.', 'secwp') . '</p>';
+        echo '<p>' . esc_html__('Configure the checkout behavior and product settings.', 'spc') . '</p>';
     }
 
     /**
@@ -422,9 +422,9 @@ class SECWP_Settings_Page {
                class="regular-text"
                placeholder="<?php echo esc_attr($default_url); ?>">
         <p class="description">
-            <?php esc_html_e('URL where customers will be redirected after checkout. Use {CHECKOUT_SESSION_ID} as a placeholder.', 'secwp'); ?>
+            <?php esc_html_e('URL where customers will be redirected after checkout. Use {CHECKOUT_SESSION_ID} as a placeholder.', 'spc'); ?>
             <?php if (empty($value)) : ?>
-                <br><strong><?php esc_html_e('Suggested:', 'secwp'); ?></strong> <code><?php echo esc_html($default_url); ?></code>
+                <br><strong><?php esc_html_e('Suggested:', 'spc'); ?></strong> <code><?php echo esc_html($default_url); ?></code>
             <?php endif; ?>
         </p>
         <?php
@@ -443,7 +443,7 @@ class SECWP_Settings_Page {
                class="regular-text"
                placeholder="price_...">
         <p class="description">
-            <?php esc_html_e('The Stripe Price ID for the product you want to sell. You can find this in your Stripe Dashboard under Products.', 'secwp'); ?>
+            <?php esc_html_e('The Stripe Price ID for the product you want to sell. You can find this in your Stripe Dashboard under Products.', 'spc'); ?>
         </p>
         <?php
     }

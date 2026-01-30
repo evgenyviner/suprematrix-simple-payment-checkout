@@ -1,14 +1,14 @@
 (async function () {
-    const container = document.querySelector("#secwp");
+    const container = document.querySelector("#spc");
     if (!container) return;
   
-    if (!window.secwp?.publishableKey) {
+    if (!window.spc?.publishableKey) {
       container.innerHTML = "Stripe publishable key not configured.";
       return;
     }
   
     async function fetchClientSecret() {
-      const res = await fetch(window.secwp.createSessionUrl, {
+      const res = await fetch(window.spc.createSessionUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({}) // nothing needed since price is fixed server-side
@@ -20,11 +20,11 @@
     }
   
     try {
-      const stripe = Stripe(window.secwp.publishableKey);
+      const stripe = Stripe(window.spc.publishableKey);
       const clientSecret = await fetchClientSecret();
   
       const checkout = await stripe.initEmbeddedCheckout({ clientSecret });
-      checkout.mount("#secwp");
+      checkout.mount("#spc");
     } catch (e) {
       console.error(e);
       container.innerHTML = "Could not load checkout. Please try again.";
