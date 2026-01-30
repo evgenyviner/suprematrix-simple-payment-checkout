@@ -35,28 +35,31 @@ function secwp_get_settings() {
  * Get the appropriate secret key based on test mode
  */
 function secwp_get_secret_key() {
-    $settings = secwp_get_settings();
-    $is_test_mode = !empty($settings['test_mode']);
-    
-    if ($is_test_mode) {
-        return !empty($settings['test_secret_key']) ? $settings['test_secret_key'] : '';
-    } else {
-        return !empty($settings['live_secret_key']) ? $settings['live_secret_key'] : '';
-    }
+  $settings = secwp_get_settings();
+  // Handle test_mode as boolean, integer, or string
+  $is_test_mode = !empty($settings['test_mode']) || 
+                  (isset($settings['test_mode']) && ($settings['test_mode'] === '1' || $settings['test_mode'] === 1));
+  
+  if ($is_test_mode) {
+      return !empty($settings['test_secret_key']) ? $settings['test_secret_key'] : '';
+  } else {
+      return !empty($settings['live_secret_key']) ? $settings['live_secret_key'] : '';
+  }
 }
-
 /**
  * Get the appropriate publishable key based on test mode
  */
 function secwp_get_publishable_key() {
-    $settings = secwp_get_settings();
-    $is_test_mode = !empty($settings['test_mode']);
-    
-    if ($is_test_mode) {
-        return !empty($settings['test_publishable_key']) ? $settings['test_publishable_key'] : '';
-    } else {
-        return !empty($settings['live_publishable_key']) ? $settings['live_publishable_key'] : '';
-    }
+  $settings = secwp_get_settings();
+  // Handle test_mode as boolean, integer, or string
+  $is_test_mode = !empty($settings['test_mode']) || 
+                  (isset($settings['test_mode']) && ($settings['test_mode'] === '1' || $settings['test_mode'] === 1));
+  
+  if ($is_test_mode) {
+      return !empty($settings['test_publishable_key']) ? $settings['test_publishable_key'] : '';
+  } else {
+      return !empty($settings['live_publishable_key']) ? $settings['live_publishable_key'] : '';
+  }
 }
 
 /**
