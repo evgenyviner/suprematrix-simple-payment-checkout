@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin Settings Page for Stripe Embedded Checkout
+ * Admin Settings Page for Simple Payment Checkout
  *
  * @package SPC
  */
@@ -35,8 +35,8 @@ class SPC_Settings_Page {
      */
     public function add_settings_page() {
         add_options_page(
-            __('Stripe Embedded Checkout', 'spc'),
-            __('Stripe Embedded Checkout', 'spc'),
+            __('Simple Payment Checkout', 'spc'),
+            __('Simple Payment Checkout', 'spc'),
             'manage_options',
             'spc-settings',
             array($this, 'render_settings_page')
