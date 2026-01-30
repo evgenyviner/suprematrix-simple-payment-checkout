@@ -2,13 +2,13 @@
     const container = document.querySelector("#secwp");
     if (!container) return;
   
-    if (!window.ZoraStripe?.publishableKey) {
+    if (!window.secwp?.publishableKey) {
       container.innerHTML = "Stripe publishable key not configured.";
       return;
     }
   
     async function fetchClientSecret() {
-      const res = await fetch(window.ZoraStripe.createSessionUrl, {
+      const res = await fetch(window.secwp.createSessionUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({}) // nothing needed since price is fixed server-side
@@ -20,7 +20,7 @@
     }
   
     try {
-      const stripe = Stripe(window.ZoraStripe.publishableKey);
+      const stripe = Stripe(window.secwp.publishableKey);
       const clientSecret = await fetchClientSecret();
   
       const checkout = await stripe.initEmbeddedCheckout({ clientSecret });
