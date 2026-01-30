@@ -311,6 +311,18 @@ class SPC_Settings_Page {
                 submit_button(__('Save Settings', 'spc'));
                 ?>
             </form>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ccd0d4;">
+                <p>
+                    <?php
+                    printf(
+                        __('Enjoying %s? %s', 'spc'),
+                        '<strong>Simple Payment Checkout</strong>',
+                        '<a href="https://buymeacoffee.com/evgenyviner" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">☕ ' . __('Buy me a coffee', 'spc') . '</a>'
+                    );
+                    ?>
+                </p>
+            </div>
         </div>
         <?php
     }

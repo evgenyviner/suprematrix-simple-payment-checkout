@@ -6,7 +6,7 @@
  * Author: Evgeny Viner
  * Text Domain: spc
  * License: GPL-2.0+
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  * Requires at least: 5.0
  * Requires PHP: 7.4
  */
@@ -23,7 +23,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Simple Payment Checkout. If not, see http://www.gnu.org/licenses/gpl-2.0.txt.
+along with Simple Payment Checkout. If not, see https://www.gnu.org/licenses/gpl-2.0.txt.
 */
 
 require_once __DIR__ . '/includes/stripe/stripe-php/init.php';
@@ -172,3 +172,31 @@ add_action('wp_enqueue_scripts', function () {
   add_shortcode('spc_embedded_checkout', function () {
     return '<div id="spc"></div>';
   });
+
+/**
+ * Add plugin action links
+ */
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'spc_add_action_links');
+
+function spc_add_action_links($links) {
+    $settings_link = '<a href="' . admin_url('options-general.php?page=spc-settings') . '">' . __('Settings', 'spc') . '</a>';
+    $support_link = '<a href="https://buymeacoffee.com/evgenyviner" target="_blank" rel="noopener noreferrer">' . __('Buy me a coffee', 'spc') . '</a>';
+    array_unshift($links, $support_link, $settings_link);
+    return $links;
+}
+
+/**
+ * Add plugin row meta
+ */
+add_filter('plugin_row_meta', 'spc_add_plugin_row_meta', 10, 2);
+
+function spc_add_plugin_row_meta($links, $file) {
+    if (plugin_basename(__FILE__) !== $file) {
+        return $links;
+    }
+    
+    $support_link = '<a href="https://buymeacoffee.com/evgenyviner" target="_blank" rel="noopener noreferrer">' . __('Support the Developer', 'spc') . '</a>';
+    $links[] = $support_link;
+    
+    return $links;
+}
