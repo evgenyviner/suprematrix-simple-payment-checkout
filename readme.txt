@@ -50,6 +50,23 @@ The plugin handles all the technical details - you just configure the basics and
 
 This plugin does not store any payment information on your WordPress site. All payment data is processed securely by Stripe. The plugin only stores your Stripe API keys and product ID in your WordPress database.
 
+== Third-Party Services & Libraries ==
+
+This plugin uses the following third-party library:
+
+= Stripe PHP SDK =
+* Version: 19.2.0 (or whatever version you're using)
+* License: MIT License
+* Source: https://github.com/stripe/stripe-php
+* Documentation: https://stripe.com/docs/api
+* Purpose: Secure payment processing through Stripe API
+* Location: Bundled in /vendor/stripe/stripe-php/
+
+The Stripe PHP SDK is included to communicate with Stripe's payment processing service. When you use this plugin to process payments, payment data is transmitted to Stripe's servers according to their privacy policy: https://stripe.com/privacy
+
+This library is not modified and remains in its original form to ensure security and ease of updates.
+
+
 == Installation ==
 
 **Automatic Installation:**

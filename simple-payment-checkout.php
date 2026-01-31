@@ -9,6 +9,10 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  * Requires at least: 5.0
  * Requires PHP: 7.4
+ * 
+ * Third-party Libraries:
+ * - Stripe PHP SDK v19.2.0 (MIT License) - https://github.com/stripe/stripe-php
+
  */
 
 /*

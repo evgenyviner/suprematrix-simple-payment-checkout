@@ -337,3 +337,17 @@ proprietary programs.  If your program is a subroutine library, you may
 consider it more useful to permit linking proprietary applications with the
 library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.
+
+THIRD-PARTY LIBRARIES
+
+This plugin bundles the following third-party libraries:
+
+1. Stripe PHP SDK (MIT License)
+   Located in: /vendor/stripe/stripe-php/
+   Copyright (c) 2010-2024 Stripe, Inc.
+   Full license: /vendor/stripe/stripe-php/LICENSE
+
+2. Composer Autoloader (MIT License)
+   Located in: /vendor/composer/
+   Copyright (c) Nils Adermann, Jordi Boggiano
+   Full license: /vendor/composer/LICENSE
