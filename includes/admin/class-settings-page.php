@@ -315,12 +315,11 @@ class SPC_Settings_Page {
             <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ccd0d4;">
                 <p>
                     <?php
-                    printf(
-                        __('Enjoying %s? %s', 'spc'),
-                        '<strong>Simple Payment Checkout</strong>',
-                        '<a href="https://buymeacoffee.com/evgenyviner" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">☕ ' . __('Buy me a coffee', 'spc') . '</a>'
-                    );
-                    ?>
+printf(
+    __('Enjoying %s? %s', 'spc'),
+    '<strong>' . esc_html__('Simple Payment Checkout', 'spc') . '</strong>',
+    '<a href="https://buymeacoffee.com/evgenyviner" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">☕ ' . esc_html__('Buy me a coffee', 'spc') . '</a>'
+);                    ?>
                 </p>
             </div>
         </div>
