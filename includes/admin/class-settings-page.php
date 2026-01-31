@@ -89,14 +89,6 @@ class SPC_Settings_Page {
         );
 
         add_settings_field(
-            'test_secret_key',
-            __('Test Secret Key', 'spc'),
-            array($this, 'render_test_secret_key_field'),
-            'spc-settings',
-            'spc_keys_section'
-        );
-
-        add_settings_field(
             'test_publishable_key',
             __('Test Publishable Key', 'spc'),
             array($this, 'render_test_publishable_key_field'),
@@ -105,9 +97,9 @@ class SPC_Settings_Page {
         );
 
         add_settings_field(
-            'live_secret_key',
-            __('Live Secret Key', 'spc'),
-            array($this, 'render_live_secret_key_field'),
+            'test_secret_key',
+            __('Test Secret Key', 'spc'),
+            array($this, 'render_test_secret_key_field'),
             'spc-settings',
             'spc_keys_section'
         );
@@ -116,6 +108,14 @@ class SPC_Settings_Page {
             'live_publishable_key',
             __('Live Publishable Key', 'spc'),
             array($this, 'render_live_publishable_key_field'),
+            'spc-settings',
+            'spc_keys_section'
+        );
+
+        add_settings_field(
+            'live_secret_key',
+            __('Live Secret Key', 'spc'),
+            array($this, 'render_live_secret_key_field'),
             'spc-settings',
             'spc_keys_section'
         );
