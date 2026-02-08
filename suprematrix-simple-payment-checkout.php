@@ -185,8 +185,8 @@ add_action('wp_enqueue_scripts', function () {
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'sspc_add_action_links');
 
 function sspc_add_action_links($links) {
-    $settings_link = '<a href="' . admin_url('options-general.php?page=sspc-settings') . '">' . __('Settings', 'suprematrix-simple-payment-checkout') . '</a>';
-    $support_link = '<a href="https://buymeacoffee.com/evgenyviner" target="_blank" rel="noopener noreferrer">' . __('Buy me a coffee', 'suprematrix-simple-payment-checkout') . '</a>';
+    $settings_link = '<a href="' . esc_url(admin_url('options-general.php?page=sspc-settings')) . '">' . esc_html__('Settings', 'suprematrix-simple-payment-checkout') . '</a>';
+    $support_link = '<a href="https://buymeacoffee.com/evgenyviner" target="_blank" rel="noopener noreferrer">' . esc_html__('Buy me a coffee', 'suprematrix-simple-payment-checkout') . '</a>';
     array_unshift($links, $support_link, $settings_link);
     return $links;
 }
@@ -201,7 +201,7 @@ function sspc_add_plugin_row_meta($links, $file) {
         return $links;
     }
     
-    $support_link = '<a href="https://linktr.ee/evgenyviner" target="_blank" rel="noopener noreferrer">' . __('About the Developer', 'suprematrix-simple-payment-checkout') . '</a>';
+    $support_link = '<a href="https://linktr.ee/evgenyviner" target="_blank" rel="noopener noreferrer">' . esc_html__('About the Developer', 'suprematrix-simple-payment-checkout') . '</a>';
     $links[] = $support_link;
     
     return $links;
