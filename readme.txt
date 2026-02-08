@@ -1,4 +1,4 @@
-=== Simple Payment Checkout ===
+=== Suprematrix Simple Payment Checkout ===
 Contributors: evgenyviner
 Tags: stripe, payments, checkout, payment-form, embedded-checkout
 Requires at least: 5.0
@@ -16,7 +16,7 @@ Suprematrix Simple Payment Checkout makes it easy to accept payments through Str
 
 **Key Features:**
 
-* Simple setup - just add your Stripe API keys and product ID
+* Simple setup - just add your Stripe API keys and price ID
 * Secure payment processing through Stripe
 * Embedded checkout form - customers stay on your site
 * Supports both test and live modes
@@ -41,21 +41,21 @@ Suprematrix Simple Payment Checkout makes it easy to accept payments through Str
 1. Create a product in your Stripe Dashboard
 2. Install and activate the plugin
 3. Enter your Stripe API keys in the plugin settings
-4. Add your Stripe product ID
+4. Add your Stripe price ID
 5. Use the provided shortcode to display the checkout form anywhere on your site
 
 The plugin handles all the technical details - you just configure the basics and you're ready to accept payments!
 
 **Privacy & Security:**
 
-This plugin does not store any payment information on your WordPress site. All payment data is processed securely by Stripe. The plugin only stores your Stripe API keys and product ID in your WordPress database.
+This plugin does not store any payment information on your WordPress site. All payment data is processed securely by Stripe. The plugin only stores your Stripe API keys and price ID in your WordPress database.
 
 == Third-Party Services & Libraries ==
 
 This plugin uses the following third-party library:
 
 = Stripe PHP SDK =
-* Version: 19.2.0 (or whatever version you're using)
+* Version: 19.3.0
 * License: MIT License
 * Source: https://github.com/stripe/stripe-php
 * Documentation: https://stripe.com/docs/api
@@ -73,7 +73,7 @@ This library is not modified and remains in its original form to ensure security
 
 1. Log in to your WordPress admin panel
 2. Go to Plugins > Add New
-3. Search for "Simple Payment Checkout"
+3. Search for "Suprematrix Simple Payment Checkout"
 4. Click "Install Now" and then "Activate"
 
 **Manual Installation:**
@@ -86,12 +86,12 @@ This library is not modified and remains in its original form to ensure security
 
 **Configuration:**
 
-1. Go to Settings > Simple Payment Checkout
+1. Go to Settings > Suprematrix Simple Payment Checkout
 2. Enter your Stripe Publishable Key (test or live)
 3. Enter your Stripe Secret Key (test or live)
-4. Enter your Stripe Product ID
+4. Enter your Stripe price ID
 5. Save your settings
-6. Add the shortcode `[simple_payment_checkout]` to any page or post where you want the checkout form to appear
+6. Add the shortcode `[sspc_embedded_checkout]` to any page or post where you want the checkout form to appear
 
 == Frequently Asked Questions ==
 
@@ -103,9 +103,9 @@ Yes, you need a Stripe account to use this plugin. You can create a free account
 
 Log in to your Stripe Dashboard, go to Developers > API keys. You'll find both your Publishable key and Secret key there. Use the test keys for testing and live keys when you're ready to accept real payments.
 
-= Where do I find my Product ID? =
+= Where do I find my price ID? =
 
-In your Stripe Dashboard, go to Products, click on your product, and you'll see the Product ID (starts with "prod_") in the product details.
+In your Stripe Dashboard, go to Products, click on your product, and then click on the price. Price ID will be shown in the upper right corner.
 
 = Can I sell multiple products? =
 
@@ -153,14 +153,14 @@ You can get support through the WordPress.org support forums for this plugin. Fo
 == Upgrade Notice ==
 
 = 1.0.0 =
-Initial release of Simple Payment Checkout.
+Initial release of Suprematrix Simple Payment Checkout.
 
 == Additional Information ==
 
 **Developer Resources:**
 
-* GitHub Repository: [Your GitHub URL]
-* Report Issues: [Your GitHub Issues URL]
+* GitHub Repository: https://github.com/evgenyviner/suprematrix-simple-payment-checkout.git
+* Report Issues: https://github.com/evgenyviner/suprematrix-simple-payment-checkout/issues
 
 **Credits:**
 
