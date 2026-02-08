@@ -165,28 +165,28 @@ class SSPC_Settings_Page {
         }
 
         // Test Secret Key
-        $test_secret = isset($input['test_secret_key']) ? trim($input['test_secret_key']) : '';
+        $test_secret = isset($input['test_secret_key']) ? sanitize_text_field(trim($input['test_secret_key'])) : '';
         if (!empty($test_secret) && !$this->validate_secret_key($test_secret, 'test')) {
             $errors[] = __('Test Secret Key must start with "sk_test_"', 'suprematrix-simple-payment-checkout');
         }
         $sanitized['test_secret_key'] = $test_secret;
 
         // Test Publishable Key
-        $test_publishable = isset($input['test_publishable_key']) ? trim($input['test_publishable_key']) : '';
+        $test_publishable = isset($input['test_publishable_key']) ? sanitize_text_field(trim($input['test_publishable_key'])) : '';
         if (!empty($test_publishable) && !$this->validate_publishable_key($test_publishable, 'test')) {
             $errors[] = __('Test Publishable Key must start with "pk_test_"', 'suprematrix-simple-payment-checkout');
         }
         $sanitized['test_publishable_key'] = $test_publishable;
 
         // Live Secret Key
-        $live_secret = isset($input['live_secret_key']) ? trim($input['live_secret_key']) : '';
+        $live_secret = isset($input['live_secret_key']) ? sanitize_text_field(trim($input['live_secret_key'])) : '';
         if (!empty($live_secret) && !$this->validate_secret_key($live_secret, 'live')) {
             $errors[] = __('Live Secret Key must start with "sk_live_"', 'suprematrix-simple-payment-checkout');
         }
         $sanitized['live_secret_key'] = $live_secret;
 
         // Live Publishable Key
-        $live_publishable = isset($input['live_publishable_key']) ? trim($input['live_publishable_key']) : '';
+        $live_publishable = isset($input['live_publishable_key']) ? sanitize_text_field(trim($input['live_publishable_key'])) : '';
         if (!empty($live_publishable) && !$this->validate_publishable_key($live_publishable, 'live')) {
             $errors[] = __('Live Publishable Key must start with "pk_live_"', 'suprematrix-simple-payment-checkout');
         }
