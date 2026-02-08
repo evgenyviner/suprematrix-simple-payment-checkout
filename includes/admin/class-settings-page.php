@@ -316,10 +316,10 @@ class SSPC_Settings_Page {
                 <p>
                     <?php
 printf(
-    __('Enjoying %s? %s', 'suprematrix-simple-payment-checkout'),
+    wp_kses_post(__('Enjoying %s? %s', 'suprematrix-simple-payment-checkout')),
     '<strong>' . esc_html__('Simple Payment Checkout', 'suprematrix-simple-payment-checkout') . '</strong>',
     '<a href="https://buymeacoffee.com/evgenyviner" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">☕ ' . esc_html__('Buy me a coffee', 'suprematrix-simple-payment-checkout') . '</a>'
-);                    ?>
+); ?>
                 </p>
             </div>
         </div>
