@@ -2,7 +2,7 @@
 /**
  *  Uninstall clean up
  *
- * @package SPC
+ * @package SSPC
  */
 
  // If uninstall not called from WordPress, then exit.
@@ -11,9 +11,9 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 // Delete plugin options
-delete_option('spc_settings'); 
+delete_option('sspc_settings'); 
 
 // For multisite installations, delete site options
 if (is_multisite()) {
-    delete_site_option('spc_settings');
+    delete_site_option('sspc_settings');
 }

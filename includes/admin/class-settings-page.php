@@ -2,24 +2,24 @@
 /**
  * Admin Settings Page for Simple Payment Checkout
  *
- * @package SPC
+ * @package SSPC
  */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class SPC_Settings_Page {
+class SSPC_Settings_Page {
 
     /**
      * Option group name
      */
-    const OPTION_GROUP = 'spc_settings';
+    const OPTION_GROUP = 'sspc_settings';
 
     /**
      * Option name
      */
-    const OPTION_NAME = 'spc_settings';
+    const OPTION_NAME = 'sspc_settings';
 
     /**
      * Initialize the settings page
@@ -35,10 +35,10 @@ class SPC_Settings_Page {
      */
     public function add_settings_page() {
         add_options_page(
-            __('Simple Payment Checkout', 'simple-payment-checkout'),
-            __('Simple Payment Checkout', 'simple-payment-checkout'),
+            __('Simple Payment Checkout', 'suprematrix-simple-payment-checkout'),
+            __('Simple Payment Checkout', 'suprematrix-simple-payment-checkout'),
             'manage_options',
-            'spc-settings',
+            'sspc-settings',
             array($this, 'render_settings_page')
         );
     }
@@ -66,82 +66,82 @@ class SPC_Settings_Page {
 
         // Mode Settings Section
         add_settings_section(
-            'spc_mode_section',
-            __('Mode Settings', 'simple-payment-checkout'),
+            'sspc_mode_section',
+            __('Mode Settings', 'suprematrix-simple-payment-checkout'),
             array($this, 'render_mode_section_description'),
-            'spc-settings'
+            'sspc-settings'
         );
 
         add_settings_field(
             'test_mode',
-            __('Test Mode', 'simple-payment-checkout'),
+            __('Test Mode', 'suprematrix-simple-payment-checkout'),
             array($this, 'render_test_mode_field'),
-            'spc-settings',
-            'spc_mode_section'
+            'sspc-settings',
+            'sspc_mode_section'
         );
 
         // API Keys Section
         add_settings_section(
-            'spc_keys_section',
-            __('API Keys', 'simple-payment-checkout'),
+            'sspc_keys_section',
+            __('API Keys', 'suprematrix-simple-payment-checkout'),
             array($this, 'render_keys_section_description'),
-            'spc-settings'
+            'sspc-settings'
         );
 
         add_settings_field(
             'test_publishable_key',
-            __('Test Publishable Key', 'simple-payment-checkout'),
+            __('Test Publishable Key', 'suprematrix-simple-payment-checkout'),
             array($this, 'render_test_publishable_key_field'),
-            'spc-settings',
-            'spc_keys_section'
+            'sspc-settings',
+            'sspc_keys_section'
         );
 
         add_settings_field(
             'test_secret_key',
-            __('Test Secret Key', 'simple-payment-checkout'),
+            __('Test Secret Key', 'suprematrix-simple-payment-checkout'),
             array($this, 'render_test_secret_key_field'),
-            'spc-settings',
-            'spc_keys_section'
+            'sspc-settings',
+            'sspc_keys_section'
         );
 
         add_settings_field(
             'live_publishable_key',
-            __('Live Publishable Key', 'simple-payment-checkout'),
+            __('Live Publishable Key', 'suprematrix-simple-payment-checkout'),
             array($this, 'render_live_publishable_key_field'),
-            'spc-settings',
-            'spc_keys_section'
+            'sspc-settings',
+            'sspc_keys_section'
         );
 
         add_settings_field(
             'live_secret_key',
-            __('Live Secret Key', 'simple-payment-checkout'),
+            __('Live Secret Key', 'suprematrix-simple-payment-checkout'),
             array($this, 'render_live_secret_key_field'),
-            'spc-settings',
-            'spc_keys_section'
+            'sspc-settings',
+            'sspc_keys_section'
         );
 
         // Checkout Configuration Section
         add_settings_section(
-            'spc_checkout_section',
-            __('Checkout Configuration', 'simple-payment-checkout'),
+            'sspc_checkout_section',
+            __('Checkout Configuration', 'suprematrix-simple-payment-checkout'),
             array($this, 'render_checkout_section_description'),
-            'spc-settings'
+            'sspc-settings'
         );
 
         add_settings_field(
             'return_url',
-            __('Return URL', 'simple-payment-checkout'),
+            __('Return URL', 'suprematrix-simple-payment-checkout'),
             array($this, 'render_return_url_field'),
-            'spc-settings',
-            'spc_checkout_section'
+            'sspc-settings',
+            'sspc_checkout_section'
         );
 
         add_settings_field(
             'price_id',
-            __('Product Price ID', 'simple-payment-checkout'),
+            __('Product Price ID', 'suprematrix-simple-payment-checkout'),
             array($this, 'render_price_id_field'),
-            'spc-settings',
-            'spc_checkout_section'
+            'sspc-settings',
+            'sspc_checkout_section'
         );
     }
 
@@ -167,35 +167,35 @@ class SPC_Settings_Page {
         // Test Secret Key
         $test_secret = isset($input['test_secret_key']) ? trim($input['test_secret_key']) : '';
         if (!empty($test_secret) && !$this->validate_secret_key($test_secret, 'test')) {
-            $errors[] = __('Test Secret Key must start with "sk_test_"', 'simple-payment-checkout');
+            $errors[] = __('Test Secret Key must start with "sk_test_"', 'suprematrix-simple-payment-checkout');
         }
         $sanitized['test_secret_key'] = $test_secret;
 
         // Test Publishable Key
         $test_publishable = isset($input['test_publishable_key']) ? trim($input['test_publishable_key']) : '';
         if (!empty($test_publishable) && !$this->validate_publishable_key($test_publishable, 'test')) {
-            $errors[] = __('Test Publishable Key must start with "pk_test_"', 'simple-payment-checkout');
+            $errors[] = __('Test Publishable Key must start with "pk_test_"', 'suprematrix-simple-payment-checkout');
         }
         $sanitized['test_publishable_key'] = $test_publishable;
 
         // Live Secret Key
         $live_secret = isset($input['live_secret_key']) ? trim($input['live_secret_key']) : '';
         if (!empty($live_secret) && !$this->validate_secret_key($live_secret, 'live')) {
-            $errors[] = __('Live Secret Key must start with "sk_live_"', 'simple-payment-checkout');
+            $errors[] = __('Live Secret Key must start with "sk_live_"', 'suprematrix-simple-payment-checkout');
         }
         $sanitized['live_secret_key'] = $live_secret;
 
         // Live Publishable Key
         $live_publishable = isset($input['live_publishable_key']) ? trim($input['live_publishable_key']) : '';
         if (!empty($live_publishable) && !$this->validate_publishable_key($live_publishable, 'live')) {
-            $errors[] = __('Live Publishable Key must start with "pk_live_"', 'simple-payment-checkout');
+            $errors[] = __('Live Publishable Key must start with "pk_live_"', 'suprematrix-simple-payment-checkout');
         }
         $sanitized['live_publishable_key'] = $live_publishable;
 
         // Return URL
         $return_url = isset($input['return_url']) ? trim($input['return_url']) : '';
         if (!empty($return_url) && !filter_var($return_url, FILTER_VALIDATE_URL)) {
-            $errors[] = __('Return URL must be a valid URL', 'simple-payment-checkout');
+            $errors[] = __('Return URL must be a valid URL', 'suprematrix-simple-payment-checkout');
         }
         $sanitized['return_url'] = esc_url_raw($return_url);
 
@@ -215,7 +215,7 @@ class SPC_Settings_Page {
                 add_settings_error(
                     self::OPTION_NAME,
                     'missing_test_keys',
-                    __('Test mode is enabled but test keys are missing.', 'simple-payment-checkout'),
+                    __('Test mode is enabled but test keys are missing.', 'suprematrix-simple-payment-checkout'),
                     'warning'
                 );
             }
@@ -224,7 +224,7 @@ class SPC_Settings_Page {
                 add_settings_error(
                     self::OPTION_NAME,
                     'missing_live_keys',
-                    __('Live mode is enabled but live keys are missing.', 'simple-payment-checkout'),
+                    __('Live mode is enabled but live keys are missing.', 'suprematrix-simple-payment-checkout'),
                     'warning'
                 );
             }
@@ -265,50 +265,50 @@ class SPC_Settings_Page {
 
         $settings = $this->get_settings();
         $is_test_mode = !empty($settings['test_mode']);
-        $shortcode = '[spc_embedded_checkout]';
+        $shortcode = '[sspc_embedded_checkout]';
         ?>
         <div class="wrap">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 
             <?php if ($is_test_mode) : ?>
                 <div class="notice notice-info">
-                    <p><strong><?php esc_html_e('Test Mode is currently active.', 'simple-payment-checkout'); ?></strong></p>
+                    <p><strong><?php esc_html_e('Test Mode is currently active.', 'suprematrix-simple-payment-checkout'); ?></strong></p>
                 </div>
             <?php else : ?>
                 <div class="notice notice-warning">
-                    <p><strong><?php esc_html_e('Live Mode is currently active.', 'simple-payment-checkout'); ?></strong></p>
+                    <p><strong><?php esc_html_e('Live Mode is currently active.', 'suprematrix-simple-payment-checkout'); ?></strong></p>
                 </div>
             <?php endif; ?>
 
-            <div class="spc-shortcode-section" style="background: #fff; border: 1px solid #ccd0d4; box-shadow: 0 1px 1px rgba(0,0,0,.04); padding: 20px; margin: 20px 0;">
-                <h2 style="margin-top: 0;"><?php esc_html_e('Shortcode', 'simple-payment-checkout'); ?></h2>
+            <div class="sspc-shortcode-section" style="background: #fff; border: 1px solid #ccd0d4; box-shadow: 0 1px 1px rgba(0,0,0,.04); padding: 20px; margin: 20px 0;">
+                <h2 style="margin-top: 0;"><?php esc_html_e('Shortcode', 'suprematrix-simple-payment-checkout'); ?></h2>
                 <p style="margin-bottom: 15px;">
-                    <?php esc_html_e('Copy the shortcode below and paste it into any page or post where you want the checkout form to appear.', 'simple-payment-checkout'); ?>
+                    <?php esc_html_e('Copy the shortcode below and paste it into any page or post where you want the checkout form to appear.', 'suprematrix-simple-payment-checkout'); ?>
                 </p>
                 <div style="display: flex; gap: 10px; align-items: stretch;">
                     <input type="text" 
-                           id="spc-shortcode-input" 
+                           id="sspc-shortcode-input" 
                            value="<?php echo esc_attr($shortcode); ?>" 
                            readonly 
                            style="flex: 1; padding: 8px 12px; background-color: #f0f0f1; border: 1px solid #8c8f94; color: #50575e; font-family: monospace; font-size: 14px; cursor: text; box-sizing: border-box; height: 38px; line-height: 1.5;">
                     <button type="button" 
-                            id="spc-copy-shortcode" 
+                            id="sspc-copy-shortcode" 
                             class="button button-secondary"
                             data-shortcode="<?php echo esc_attr($shortcode); ?>"
                             style="height: 38px; box-sizing: border-box; padding: 8px 12px; line-height: 1.5;">
-                        <?php esc_html_e('Copy Shortcode', 'simple-payment-checkout'); ?>
+                        <?php esc_html_e('Copy Shortcode', 'suprematrix-simple-payment-checkout'); ?>
                     </button>
                 </div>
-                <p id="spc-copy-feedback" style="margin: 10px 0 0 0; color: #00a32a; display: none; font-weight: 600;">
-                    <?php esc_html_e('✓ Shortcode copied to clipboard!', 'simple-payment-checkout'); ?>
+                <p id="sspc-copy-feedback" style="margin: 10px 0 0 0; color: #00a32a; display: none; font-weight: 600;">
+                    <?php esc_html_e('✓ Shortcode copied to clipboard!', 'suprematrix-simple-payment-checkout'); ?>
                 </p>
             </div>
 
             <form action="options.php" method="post">
                 <?php
                 settings_fields(self::OPTION_GROUP);
-                do_settings_sections('spc-settings');
-                submit_button(__('Save Settings', 'simple-payment-checkout'));
+                do_settings_sections('sspc-settings');
+                submit_button(__('Save Settings', 'suprematrix-simple-payment-checkout'));
                 ?>
             </form>
             
@@ -316,9 +316,9 @@ class SPC_Settings_Page {
                 <p>
                     <?php
 printf(
-    __('Enjoying %s? %s', 'simple-payment-checkout'),
-    '<strong>' . esc_html__('Simple Payment Checkout', 'simple-payment-checkout') . '</strong>',
-    '<a href="https://buymeacoffee.com/evgenyviner" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">☕ ' . esc_html__('Buy me a coffee', 'simple-payment-checkout') . '</a>'
+    __('Enjoying %s? %s', 'suprematrix-simple-payment-checkout'),
+    '<strong>' . esc_html__('Simple Payment Checkout', 'suprematrix-simple-payment-checkout') . '</strong>',
+    '<a href="https://buymeacoffee.com/evgenyviner" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">☕ ' . esc_html__('Buy me a coffee', 'suprematrix-simple-payment-checkout') . '</a>'
 );                    ?>
                 </p>
             </div>
@@ -331,17 +331,17 @@ printf(
      */
     public function enqueue_admin_scripts($hook) {
         // Only load on our settings page
-        if ($hook !== 'settings_page_spc-settings') {
+        if ($hook !== 'settings_page_sspc-settings') {
             return;
         }
         
         // Add inline script for copy functionality
         $script = "
         jQuery(document).ready(function($) {
-            $('#spc-copy-shortcode').on('click', function(e) {
+            $('#sspc-copy-shortcode').on('click', function(e) {
                 e.preventDefault();
-                var shortcodeInput = document.getElementById('spc-shortcode-input');
-                var feedback = document.getElementById('spc-copy-feedback');
+                var shortcodeInput = document.getElementById('sspc-shortcode-input');
+                var feedback = document.getElementById('sspc-copy-feedback');
                 var shortcode = shortcodeInput.value;
                 
                 // Try modern Clipboard API first
@@ -367,10 +367,10 @@ printf(
                     if (successful) {
                         showCopyFeedback(feedback, button);
                     } else {
-                        alert('" . esc_js(__('Please manually copy the shortcode.', 'simple-payment-checkout')) . "');
+                        alert('" . esc_js(__('Please manually copy the shortcode.', 'suprematrix-simple-payment-checkout')) . "');
                     }
                 } catch (err) {
-                    alert('" . esc_js(__('Please manually copy the shortcode.', 'simple-payment-checkout')) . "');
+                    alert('" . esc_js(__('Please manually copy the shortcode.', 'suprematrix-simple-payment-checkout')) . "');
                 }
             }
             
@@ -383,7 +383,7 @@ printf(
                 
                 // Change button text temporarily
                 var originalText = button.text();
-                button.text('" . esc_js(__('Copied!', 'simple-payment-checkout')) . "');
+                button.text('" . esc_js(__('Copied!', 'suprematrix-simple-payment-checkout')) . "');
                 setTimeout(function() {
                     button.text(originalText);
                 }, 2000);
@@ -416,7 +416,7 @@ printf(
      * Render mode section description
      */
     public function render_mode_section_description() {
-        echo '<p>' . esc_html__('Choose whether to use test or live Stripe keys.', 'simple-payment-checkout') . '</p>';
+        echo '<p>' . esc_html__('Choose whether to use test or live Stripe keys.', 'suprematrix-simple-payment-checkout') . '</p>';
     }
 
     /**
@@ -428,10 +428,10 @@ printf(
         ?>
         <label>
             <input type="checkbox" name="<?php echo esc_attr(self::OPTION_NAME); ?>[test_mode]" value="1" <?php checked($test_mode); ?>>
-            <?php esc_html_e('Enable Test Mode', 'simple-payment-checkout'); ?>
+            <?php esc_html_e('Enable Test Mode', 'suprematrix-simple-payment-checkout'); ?>
         </label>
         <p class="description">
-            <?php esc_html_e('When enabled, test keys will be used. Uncheck to use live keys.', 'simple-payment-checkout'); ?>
+            <?php esc_html_e('When enabled, test keys will be used. Uncheck to use live keys.', 'suprematrix-simple-payment-checkout'); ?>
         </p>
         <?php
     }
@@ -440,7 +440,7 @@ printf(
      * Render keys section description
      */
     public function render_keys_section_description() {
-        echo '<p>' . esc_html__('Enter your Stripe API keys. You can find these in your Stripe Dashboard under Developers > API keys.', 'simple-payment-checkout') . '</p>';
+        echo '<p>' . esc_html__('Enter your Stripe API keys. You can find these in your Stripe Dashboard under Developers > API keys.', 'suprematrix-simple-payment-checkout') . '</p>';
     }
 
     /**
@@ -456,7 +456,7 @@ printf(
                class="regular-text"
                placeholder="sk_test_...">
         <p class="description">
-            <?php esc_html_e('Your test secret key (starts with sk_test_)', 'simple-payment-checkout'); ?>
+            <?php esc_html_e('Your test secret key (starts with sk_test_)', 'suprematrix-simple-payment-checkout'); ?>
         </p>
         <?php
     }
@@ -474,7 +474,7 @@ printf(
                class="regular-text"
                placeholder="pk_test_...">
         <p class="description">
-            <?php esc_html_e('Your test publishable key (starts with pk_test_)', 'simple-payment-checkout'); ?>
+            <?php esc_html_e('Your test publishable key (starts with pk_test_)', 'suprematrix-simple-payment-checkout'); ?>
         </p>
         <?php
     }
@@ -492,7 +492,7 @@ printf(
                class="regular-text"
                placeholder="sk_live_...">
         <p class="description">
-            <?php esc_html_e('Your live secret key (starts with sk_live_)', 'simple-payment-checkout'); ?>
+            <?php esc_html_e('Your live secret key (starts with sk_live_)', 'suprematrix-simple-payment-checkout'); ?>
         </p>
         <?php
     }
@@ -510,7 +510,7 @@ printf(
                class="regular-text"
                placeholder="pk_live_...">
         <p class="description">
-            <?php esc_html_e('Your live publishable key (starts with pk_live_)', 'simple-payment-checkout'); ?>
+            <?php esc_html_e('Your live publishable key (starts with pk_live_)', 'suprematrix-simple-payment-checkout'); ?>
         </p>
         <?php
     }
@@ -519,7 +519,7 @@ printf(
      * Render checkout section description
      */
     public function render_checkout_section_description() {
-        echo '<p>' . esc_html__('Configure the checkout behavior and product settings.', 'simple-payment-checkout') . '</p>';
+        echo '<p>' . esc_html__('Configure the checkout behavior and product settings.', 'suprematrix-simple-payment-checkout') . '</p>';
     }
 
     /**
@@ -536,9 +536,9 @@ printf(
                class="regular-text"
                placeholder="<?php echo esc_attr($default_url); ?>">
         <p class="description">
-            <?php esc_html_e('URL where customers will be redirected after checkout. Use {CHECKOUT_SESSION_ID} as a placeholder.', 'simple-payment-checkout'); ?>
+            <?php esc_html_e('URL where customers will be redirected after checkout. Use {CHECKOUT_SESSION_ID} as a placeholder.', 'suprematrix-simple-payment-checkout'); ?>
             <?php if (empty($value)) : ?>
-                <br><strong><?php esc_html_e('Suggested:', 'simple-payment-checkout'); ?></strong> <code><?php echo esc_html($default_url); ?></code>
+                <br><strong><?php esc_html_e('Suggested:', 'suprematrix-simple-payment-checkout'); ?></strong> <code><?php echo esc_html($default_url); ?></code>
             <?php endif; ?>
         </p>
         <?php
@@ -557,7 +557,7 @@ printf(
                class="regular-text"
                placeholder="price_...">
         <p class="description">
-            <?php esc_html_e('The Stripe Price ID for the product you want to sell. You can find this in your Stripe Dashboard under Products.', 'simple-payment-checkout'); ?>
+            <?php esc_html_e('The Stripe Price ID for the product you want to sell. You can find this in your Stripe Dashboard under Products.', 'suprematrix-simple-payment-checkout'); ?>
         </p>
         <?php
     }

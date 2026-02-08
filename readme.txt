@@ -12,7 +12,7 @@ Accept Stripe payments on your WordPress site with a simple embedded checkout fo
 
 == Description ==
 
-Simple Payment Checkout makes it easy to accept payments through Stripe on your WordPress website. The plugin embeds a secure Stripe checkout form directly on your site using an iframe, providing a seamless payment experience for your customers.
+Suprematrix Simple Payment Checkout makes it easy to accept payments through Stripe on your WordPress website. The plugin embeds a secure Stripe checkout form directly on your site using an iframe, providing a seamless payment experience for your customers.
 
 **Key Features:**
 
